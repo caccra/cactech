@@ -11,12 +11,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeIcon   = document.getElementById('theme-icon');
   const html        = document.documentElement;
   const saved       = localStorage.getItem('cactech-theme');
-  if (saved === 'light') { html.setAttribute('data-theme','light'); themeIcon.textContent = '🌙'; }
+
+  const LOGO_DARK  = 'assets/images/logo-2.png';
+  const LOGO_LIGHT = 'assets/images/logo.png';
+  const applyTheme = isLight => {
+    isLight ? html.setAttribute('data-theme','light') : html.removeAttribute('data-theme');
+    themeIcon.textContent = isLight ? '🌙' : '☀️';
+    document.querySelectorAll('.logo-img').forEach(img => {
+      img.src = isLight ? LOGO_LIGHT : LOGO_DARK;
+    });
+  };
+  applyTheme(saved === 'light');
   themeToggle.addEventListener('click', () => {
-    const light = html.getAttribute('data-theme') === 'light';
-    light ? html.removeAttribute('data-theme') : html.setAttribute('data-theme','light');
-    localStorage.setItem('cactech-theme', light ? 'dark' : 'light');
-    themeIcon.textContent = light ? '☀️' : '🌙';
+    const nowLight = html.getAttribute('data-theme') !== 'light';
+    localStorage.setItem('cactech-theme', nowLight ? 'light' : 'dark');
+    applyTheme(nowLight);
   });
 
   /* ── SCROLL PROGRESS BAR ── */
