@@ -1,0 +1,27 @@
+# Cactech Digital — robots.txt
+# https://cactech.co.ug
+
+# Allow all crawlers (including Google Search, Bing)
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+
+# Allow AI search crawlers — being cited in AI Overviews and ChatGPT
+# drives brand awareness and referral traffic for a service business
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://cactech.co.ug/sitemap.xml
