@@ -255,9 +255,10 @@ h1 em, h2 em, .cta-headline em {
 }
 .nav-container { display:flex; align-items:center; justify-content:space-between; }
 .logo { display:flex; align-items:center; gap:10px; }
-.logo-img { height:38px; width:auto; mix-blend-mode:screen; transition:opacity .3s; }
+.logo-img { height:38px; width:auto; display:block; }
+.logo-pill { background:#fff; border-radius:8px; padding:4px 10px; display:inline-flex; align-items:center; }
+[data-theme="light"] .logo-pill { background:transparent; padding:0; }
 .footer-logo-img { height:32px; }
-[data-theme="light"] .logo-img { mix-blend-mode:multiply; }
 .logo-text { font-family:var(--font-d); font-size:1.25rem; font-weight:800; letter-spacing:.06em; display:flex; align-items:center; }
 .logo-c { color:var(--cyan); }
 

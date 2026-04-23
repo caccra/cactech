@@ -11,23 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeIcon   = document.getElementById('theme-icon');
   const html        = document.documentElement;
   const saved       = localStorage.getItem('cactech-theme');
-
-  const LOGO_DARK  = 'assets/images/logo-2.png';
-  const LOGO_LIGHT = 'assets/images/logo.png';
-  const allLogos   = () => document.querySelectorAll('.logo-img');
-
-  const applyTheme = isLight => {
-    isLight ? html.setAttribute('data-theme','light') : html.removeAttribute('data-theme');
-    themeIcon.textContent = isLight ? '🌙' : '☀️';
-    allLogos().forEach(img => { img.src = isLight ? LOGO_LIGHT : LOGO_DARK; });
-  };
-
-  applyTheme(saved === 'light');
-
+  if (saved === 'light') { html.setAttribute('data-theme','light'); themeIcon.textContent = '🌙'; }
   themeToggle.addEventListener('click', () => {
-    const nowLight = html.getAttribute('data-theme') !== 'light';
-    localStorage.setItem('cactech-theme', nowLight ? 'light' : 'dark');
-    applyTheme(nowLight);
+    const light = html.getAttribute('data-theme') === 'light';
+    light ? html.removeAttribute('data-theme') : html.setAttribute('data-theme','light');
+    localStorage.setItem('cactech-theme', light ? 'dark' : 'light');
+    themeIcon.textContent = light ? '☀️' : '🌙';
   });
 
   /* ── SCROLL PROGRESS BAR ── */
