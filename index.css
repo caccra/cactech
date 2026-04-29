@@ -255,8 +255,16 @@ h1 em, h2 em, .cta-headline em {
 }
 .nav-container { display:flex; align-items:center; justify-content:space-between; }
 .logo { display:flex; align-items:center; gap:10px; }
-.logo-img { height:44px; width:auto; display:block; mix-blend-mode:screen; filter:brightness(1.15) contrast(1.05); }
-[data-theme="light"] .logo-img { mix-blend-mode:multiply; filter:none; }
+.logo-img {
+  height:44px; width:auto; display:block;
+  mix-blend-mode:screen;
+  filter:brightness(1.35) contrast(1.08) saturate(1.08) drop-shadow(0 0 16px rgba(0,229,255,0.18));
+  transition:filter .4s ease, opacity .28s ease;
+}
+[data-theme="light"] .logo-img {
+  mix-blend-mode:multiply;
+  filter:brightness(0.86) contrast(1.14) saturate(1.2) drop-shadow(0 1px 6px rgba(0,0,0,0.10));
+}
 .footer-logo-img { height:36px; }
 .logo-text { font-family:var(--font-d); font-size:1.25rem; font-weight:800; letter-spacing:.06em; display:flex; align-items:center; }
 .logo-c { color:var(--cyan); }

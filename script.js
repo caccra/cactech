@@ -14,18 +14,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const LOGO_DARK  = 'assets/images/logo-2.png';
   const LOGO_LIGHT = 'assets/images/logo.png';
-  const applyTheme = isLight => {
+  const applyTheme = (isLight, animate = false) => {
     isLight ? html.setAttribute('data-theme','light') : html.removeAttribute('data-theme');
     themeIcon.textContent = isLight ? '🌙' : '☀️';
     document.querySelectorAll('.logo-img').forEach(img => {
-      img.src = isLight ? LOGO_LIGHT : LOGO_DARK;
+      if (animate) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = isLight ? LOGO_LIGHT : LOGO_DARK;
+          img.style.opacity = '1';
+        }, 180);
+      } else {
+        img.src = isLight ? LOGO_LIGHT : LOGO_DARK;
+      }
     });
   };
   applyTheme(saved === 'light');
   themeToggle.addEventListener('click', () => {
     const nowLight = html.getAttribute('data-theme') !== 'light';
     localStorage.setItem('cactech-theme', nowLight ? 'light' : 'dark');
-    applyTheme(nowLight);
+    applyTheme(nowLight, true);
   });
 
   /* ── SCROLL PROGRESS BAR ── */
