@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const html        = document.documentElement;
   const saved       = localStorage.getItem('cactech-theme');
 
-  const LOGO_DARK  = 'assets/images/logo-2.png';
+  const LOGO_DARK  = 'assets/images/logo.png';
   const LOGO_LIGHT = 'assets/images/logo.png';
   const applyTheme = (isLight, animate = false) => {
     isLight ? html.setAttribute('data-theme','light') : html.removeAttribute('data-theme');
@@ -202,13 +202,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── HERO WORD CYCLE ── */
   const wordEl = document.getElementById('word-cycle');
   if (wordEl) {
-    const words = ['Win Online.', 'Convert.', 'Scale Fast.', 'Dominate.', 'Thrive.'];
-    let i = 0;
+    const words = ['Convert.', 'Scale Fast.', 'Dominate.', 'Thrive.', 'Win Online.'];
+    let wi = -1;
     setInterval(() => {
       wordEl.style.opacity   = '0';
       wordEl.style.transform = 'translateY(-10px)';
       setTimeout(() => {
-        wordEl.textContent     = words[(++i) % words.length];
+        wi = (wi + 1) % words.length;
+        wordEl.textContent     = words[wi];
         wordEl.style.opacity   = '1';
         wordEl.style.transform = 'translateY(0)';
       }, 280);
@@ -307,6 +308,22 @@ document.addEventListener('DOMContentLoaded', () => {
     input.placeholder     = 'Thanks for subscribing!';
     setTimeout(() => { btn.textContent = '→'; input.placeholder = 'your@email.com'; }, 3500);
   };
+
+  /* ── FAQ ACCORDION ── */
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 
   /* ── SMOOTH SCROLL FOR ANCHOR LINKS ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
